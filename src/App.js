@@ -1,12 +1,14 @@
-import './scss/style.scss';
+import React from 'react';
 import Timer from './components/Timer';
+import TodoItem from './components/TodoItem';
 
 function App() {
   return (
-    <div>
+    <>
       <Timer />
-    </div>
-  )
+      <TodoItem txt={'hello world'} />
+    </>
+  );
 }
 
-export default App
+export default App;
