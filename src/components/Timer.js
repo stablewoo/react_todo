@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { HiPlayPause } from 'react-icons/hi2';
+
+function toSec(time) {
+  return time.h * 3600 + time.m * 60 + time.s;
+}
 
 const Timer = () => {
   const [time, setTime] = useState({
-    h: 0,
-    m: 0,
-    s: 0,
+    h: 10,
+    m: 10,
+    s: 10,
   });
+  const [play, setPlay] = useState(false);
 
   const incMin5 = () => {
     setTime((prev) => {
@@ -43,7 +49,13 @@ const Timer = () => {
         {`${time.h < 10 ? `0${time.h}` : time.h}:
           ${time.m < 10 ? `0${time.m}` : time.m}:
           ${time.s < 10 ? `0${time.s}` : time.s}`}
-        <button></button>
+        <button
+          onClick={() => {
+            setPlay((prev) => !prev);
+          }}
+        >
+          <HiPlayPause />
+        </button>
       </span>
       <div>
         <button onClick={incHour1}>+1h</button>
