@@ -1,9 +1,12 @@
 import React from 'react';
 
-const TodoItem = (props) => {
-  const { txt } = props;
-
-  return <div className="">{txt}</div>;
+function TodoItem (props) {
+  
+  return(
+    <div>
+      {props.item}
+    </div>
+  )
 };
 
 export default TodoItem;

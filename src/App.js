@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Timer from './components/Timer';
-import TodoItem from './components/TodoItem';
 import TimeStat from './components/TimeStat';
+import TodoBoard from './components/TodoBoard';
 
 function App() {
+
   const [done, setDone] = useState(false);
+
+  const [inputValue, setInputValue] = useState('')
+
+  const [todoList, setTodoList] = useState([])
+
+  const addItem = () => {
+    setTodoList([...todoList, inputValue])
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -14,9 +23,13 @@ function App() {
 
   return (
     <>
+    <span>
+      <input value={inputValue} type="text" onChange= {(event) => setInputValue(event.target.value)} />
+      <button onClick={addItem}>추가</button>
+    </span>
       <TimeStat takenSec={1234} done={done} />
       <Timer />
-      <TodoItem txt={'hello world'} />
+      <TodoBoard todoList = {todoList} />
     </>
   );
 }
