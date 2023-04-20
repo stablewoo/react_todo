@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { HiPlayPause } from 'react-icons/hi2';
-import useInterval from '../hooks/useInterval';
+import useInterval from '../hooks/useInterval'
 
 const Timer = () => {
   const [time, setTime] = useState({
@@ -9,33 +9,30 @@ const Timer = () => {
     s: 0,
   });
 
+  const [play, setPlay] = useState(false);
+
   function toSec(time) {
     return time.h * 3600 + time.m * 60 + time.s;
   }
-  
-  const [play, setPlay] = useState(false);
-  const countDownRef = useRef(0);
-
-   useEffect(() => {
-    const countDownTimer = setInterval(() => {
-      console.log('타이머 돌아간다~')
-    }, 1000);
-
-    return() =>{
-      clearInterval(countDownTimer)
-      console.log('타이머 끝났다~')
+  function toTime(sec) {
+    const h = parseInt(sec / 3600);
+    const m = parseInt((sec - h * 3600) / 60);
+    const s = parseInt(sec % 60);
+    return {
+      h,
+      m,
+      s,
     }
-  },[play]) 
+  }
   
-  /*
   useInterval(() => {
-    setTime((currTime) => {
-      const currSec = toSec(currTime)
-      return countDownSec(currSec -1);
+    setTime((prev) => {
+    let nextSec = toSec(prev)
+    nextSec = nextSec - 1;
+    return toTime(nextSec) 
     })
-  }, 1000) 
-  */
-
+  })
+  
   const incMin5 = () => {
     setTime((prev) => {
       const nextM = prev.m + 5;
@@ -73,7 +70,7 @@ const Timer = () => {
         {`${time.h < 10 ? `0${time.h}` : time.h}:
           ${time.m < 10 ? `0${time.m}` : time.m}:
           ${time.s < 10 ? `0${time.s}` : time.s}`}
-        <button onClick={() => setPlay(!setPlay)}>
+        <button onClick={ setPlay((prev) => !prev)}>
           <HiPlayPause />
         </button>
       </span>

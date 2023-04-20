@@ -11,10 +11,14 @@ const useInterval = (callback, delay) => {
     const executeCallback = () => {
       savedCallback.current();
     };
+    let timerId = null;
+    if (delay) {
+    timerId = setInterval(executeCallback, delay); 
+  }
 
-    const timerId = setInterval(executeCallback, delay);
-
-    return () => clearInterval(timerId);
+    return () => {
+      if (timerId) clearInterval(timerId);
+    };
   }, []);
 };
 

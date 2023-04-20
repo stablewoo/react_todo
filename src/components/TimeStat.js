@@ -21,7 +21,6 @@ const TimeStat = (props) => {
   useEffect(() => {
     if (done) {
       setDoneTime(new Date());
-      // console.log(new Date());
     }
   }, [done]);
 
