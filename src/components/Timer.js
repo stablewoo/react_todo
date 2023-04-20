@@ -68,14 +68,14 @@ const Timer = () => {
 
   return (
     <div>
-      <span>
+      <div>
         {`${time.h < 10 ? `0${time.h}` : time.h}:
           ${time.m < 10 ? `0${time.m}` : time.m}:
           ${time.s < 10 ? `0${time.s}` : time.s}`}
         <button onClick={() => setPlay((prevPlay) => !prevPlay)}>
           <HiPlayPause />
         </button>
-      </span>
+      </div>
       <div>
         <button onClick={incHour1}>+1h</button>
         <button onClick={incMin10}>+10m</button>
