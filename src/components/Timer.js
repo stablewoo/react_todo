@@ -25,6 +25,7 @@ const Timer = () => {
     s: 0,
   });
   const [play, setPlay] = useState(false);
+  const disablePlay = timeToSec(time) <= 0;
 
   useInterval(
     () => {
@@ -33,7 +34,7 @@ const Timer = () => {
         return secToTime(currSec - 1);
       });
     },
-    play ? 1000 : null,
+    play && !disablePlay ? 1000 : null,
   );
 
   const incMin5 = () => {
@@ -72,7 +73,10 @@ const Timer = () => {
         {`${time.h < 10 ? `0${time.h}` : time.h}:
           ${time.m < 10 ? `0${time.m}` : time.m}:
           ${time.s < 10 ? `0${time.s}` : time.s}`}
-        <button onClick={() => setPlay((prevPlay) => !prevPlay)}>
+        <button
+          onClick={() => setPlay((prevPlay) => !prevPlay)}
+          disabled={disablePlay}
+        >
           <HiPlayPause />
         </button>
       </div>

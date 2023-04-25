@@ -8,24 +8,16 @@ import DateBox from './components/DateBox';
 import DraggableList from './components/DraggableList';
 
 function App() {
-  const [done, setDone] = useState(false);
-
-  const [list, setList] = useState(['apple', 'banana', 'cabage', 'dagger']);
-
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
-
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDone(true);
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setDone(true);
+  //   }, 1000);
+  // }, []);
 
   return (
     <>
-      <TimeStat takenSec={1234} done={done} />
+      <TodoBoard todoList={[]} />
+      {/* <TimeStat takenSec={1234} done={done} />
       <Timer />
       <TodoBoard />
       <TotalTime sec={1211345} />
@@ -33,7 +25,7 @@ function App() {
       <DraggableList
         list={list}
         onChangeList={(nextList) => setList(nextList)}
-      />
+      /> */}
     </>
   );
 }

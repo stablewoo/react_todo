@@ -1,9 +1,9 @@
 import TodoItem from './TodoItem';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import TodoContainer from './TodoContainer';
 
 function TodoBoard(props) {
-
   const [inputValue, setInputValue] = useState('');
   const [todoList, setTodoList] = useState([]);
 
@@ -15,33 +15,34 @@ function TodoBoard(props) {
         txt: inputValue,
       },
     ]);
-  };  
+  };
 
   const onKeyEnterDown = (e) => {
-    if (e.key !== 'Enter') return
-    if (inputValue === '') return
-      addItem()
-      setInputValue('');
-  }
+    if (e.key !== 'Enter') return;
+    if (inputValue === '') return;
+    addItem();
+    setInputValue('');
+  };
 
   return (
-    <div className='todoboard'>
+    <div className="todoboard">
       <div>
-        <input className='todoboard__input'
-          placeholder='Press Enter for new to-do list'
+        <input
+          className="todoboard__input"
+          placeholder="Press Enter for new to-do list"
           value={inputValue}
           type="text"
-          onChange={ event => setInputValue(event.target.value)}
-          onKeyDown={e => onKeyEnterDown(e)}
+          onChange={(event) => setInputValue(event.target.value)}
+          onKeyDown={(e) => onKeyEnterDown(e)}
         />
       </div>
       <div>
-        {todoList.map((item) => (
-          <TodoItem key={item.id} item={item} />
-        ))}
+        {todoList.map((item) => {
+          return <TodoContainer key={item.id} item={item} />;
+        })}
       </div>
     </div>
   );
-};
+}
 
 export default TodoBoard;
