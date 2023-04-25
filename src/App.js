@@ -6,6 +6,7 @@ import TimeStat from './components/TimeStat';
 import TodoBoard from './components/TodoBoard';
 import TotalTime from './components/TotalTime';
 import DateBox from './components/DateBox';
+import DraggableList from './components/DraggableList';
 
 function App() {
   const [done, setDone] = useState(false);
@@ -13,6 +14,12 @@ function App() {
   const [inputValue, setInputValue] = useState('');
 
   const [todoList, setTodoList] = useState([]);
+
+  const [list, setList] = useState(['apple', 'banana', 'cabage', 'dagger']);
+
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
 
   const addItem = () => {
     setTodoList([
@@ -52,6 +59,10 @@ function App() {
       <TodoBoard todoList={todoList} />
       <TotalTime sec={1211345} />
       <DateBox />
+      <DraggableList
+        list={list}
+        onChangeList={(nextList) => setList(nextList)}
+      />
     </>
   );
 }
